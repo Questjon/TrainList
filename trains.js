@@ -14,21 +14,27 @@ xhr.send();
 
 
 function ParseTrains(array) {
-  var results;
+  var results = [];
+  results.push(array[0]);
+  for(var train in array){
+    var found=false;
+  for(var i = 0; i < results.length; i++) {
 
-  function Hash(o){
-      return o.vehicleId;
-  }
-  var hashesFound = {};
-  array.forEach(function(o){
-      hashesFound[Hash(o)] = o;
-  })
-   results = Object.keys(hashesFound).map(function(k){
-      return hashesFound[k];
-  })
-  results.sort(function(a, b) {
-      return parseFloat(a.vehicleId) - parseFloat(b.vehicleId);
-  });
+      if (results[i].vehicleId == array[train].vehicleId) {
+        found=true;
+          if(results[i].timeToStation>array[train].timeToStation){
+            results[i]=array[train];
+          }
+      }
+    }
+    if(found==false)results.push(array[train]);
+
+
+    }
+
+results.sort(function(obj1, obj2) {
+	// Ascending: first age less than the previous
+	return obj1.vehicleId - obj2.vehicleId;});
 
   return results;
 }
@@ -126,13 +132,13 @@ var last = string_of_enum(train.stationName);
 
 if (destination>last) return "East";
 if (destination<last) return "West";
-if (destination == "") return "Unknown";
+if(destination==last) return "At destination"
 
-
+return "Unknown (not Jon's fault)";
 }
 function string_of_enum(value)
 {
-  ;
+
   for (var k in stations) if (k === value){
 
      return stations[k];
