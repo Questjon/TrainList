@@ -4,10 +4,12 @@ body {
      text-overflow: ellipsis;
  font-size: 4vw;
        white-space:nowrap;
-
+       width:90%;
+       overflow-x: auto;
          display:inline-block
 }
 .trainDiv{
+width:100%;
   padding: 3vw;
   margin-top: 5px;
   border-radius: .2em;
