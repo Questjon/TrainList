@@ -4,7 +4,7 @@ body {
      text-overflow: ellipsis;
  font-size: 4vw;
        white-space:nowrap;
-       width:500px;
+
          display:inline-block
 }
 .trainDiv{
